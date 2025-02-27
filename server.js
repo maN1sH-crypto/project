@@ -22,13 +22,16 @@ app.get("/api/results", async (req, res) => {
                 let table = $(element).parent();
 
                 table.find("tr.day-number").each((i, row) => {
-                    let date = $(row).find(".day").text().trim();
+                    let day = $(row).find(".day").text().trim();
                     let dswr = $(row).find("td").eq(1).text().trim();
                     let frbd = $(row).find("td").eq(2).text().trim();
                     let gzbd = $(row).find("td").eq(3).text().trim();
                     let gali = $(row).find("td").eq(4).text().trim();
 
-                    results.push({ date, dswr, frbd, gzbd, gali });
+                    // Format date as "DD-MM-YYYY"
+                    let formattedDate = `${day}-02-2025`;
+
+                    results.push({ date: formattedDate, dswr, frbd, gzbd, gali });
                 });
             }
         });
