@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February 2025 OKSATTA Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; }
+        header { background: #4CAF50; color: white; padding: 20px; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; background: white; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+        th { background: #4CAF50; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+    <script>
+        async function fetchResults() {
+            try {
+                const response = await fetch("http://localhost:3000/api/results");
+                const data = await response.json();
+                displayResults(data.results);
+            } catch (error) {
+                console.error("Error fetching results:", error);
+            }
+        }
+
+        function displayResults(results) {
+            const tableBody = document.getElementById("results-body");
+            tableBody.innerHTML = ""; 
+
+            results.forEach(row => {
+                let rowHTML = `<tr>
+                    <td>${row.date}</td>
+                    <td>${row.dswr}</td>
+                    <td>${row.frbd}</td>
+                    <td>${row.gzbd}</td>
+                    <td>${row.gali}</td>
+                </tr>`;
+                tableBody.innerHTML += rowHTML;
+            });
+        }
+
+        window.onload = fetchResults;
+    </script>
+</head>
+<body>
+     <header>
+        <h1>OKSATTA Results</h1>
+        <p>February 2025 - Gali, Desawar, Ghaziabad, Faridabad</p>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>DSWR</th>
+                <th>FRBD</th>
+                <th>GZBD</th>
+                <th>GALI</th>
+            </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+    </table>
+     <footer >
+        <p><strong>Disclaimer:</strong> This website is for informational purposes only. We do not promote or encourage gambling or betting. Play responsibly.</p>
+    </footer>
+</body>
+</html>
