@@ -16,9 +16,9 @@ app.get("/api/results", async (req, res) => {
 
         let results = [];
 
-        // Find the specific table with March 2025 data
+        // Find the specific table with April 2025 data
         $("tr.chart-head").each((index, element) => {
-            if ($(element).find("h1").text().includes("March 2025")) {
+            if ($(element).find("h1").text().includes("April 2025")) {
                 let table = $(element).parent();
 
                 table.find("tr.day-number").each((i, row) => {
@@ -29,7 +29,7 @@ app.get("/api/results", async (req, res) => {
                     let gali = $(row).find("td").eq(4).text().trim();
 
                     // Format date as "DD-MM-YYYY"
-                    let formattedDate = `${day}-03-2025`;
+                    let formattedDate = `${day}-04-2025`;
 
                     results.push({ date: formattedDate, dswr, frbd, gzbd, gali });
                 });
